@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded',(event)=>{
     empPayrollList=getEmployeePayrollFromStorage();
     document.querySelector(".emp-count").textContent=empPayrollList.length;
     createInnerHtml();
+    localStorage.removeItem('editEmp');
 });
 
 const getEmployeePayrollFromStorage=()=>{
@@ -25,7 +26,7 @@ const createInnerHtml=()=>{
     <td>
         <img id="${empPayroll._id}" onclick="remove(this)" alt="delete"
          src="delete-black-18dp.svg">
-        <img id="${empPayroll._id}" alt="edit" onclick="update(this)"
+        <img id="${empPayroll._id}" onclick="update(this)" alt="edit"
          src="create-black-18dp.svg">
     </td>
     </tr>`;
@@ -76,4 +77,11 @@ const remove=(node)=>{
     localStorage.setItem("EmployeePayrollList",JSON.stringify(empPayrollList));
     document.querySelector(".emp-count").textContent=empPayrollList.length;
     createInnerHtml();
+}
+
+const update=(nodes)=>{
+    let employeePayrollData=empPayrollList.find(empData=>empData._id==nodes._id);
+    if(!employeePayrollData) return;
+    localStorage.setItem("EmployeePayrollList",JSON.stringify(empPayrollList));
+    window.location.replace(site_properties.add_employee);
 }
