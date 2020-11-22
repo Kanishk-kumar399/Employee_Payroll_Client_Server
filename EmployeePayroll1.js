@@ -12,7 +12,7 @@ class EmployeePayroll1
      this._name=name;
      else throw 'Name is Incorrect!';
  }
-get id() {
+ get id() {
     return this._id;
 }
 set id(id){
@@ -62,7 +62,7 @@ set note(note){
      const options={year:'numeric',month:'short',day:'numeric'};
      const empDate=!this.startDate?"undefined":
                     this.startDate.toLocaleDateString("en-US",options);
-     return "id:"+this.id+"name="+this.name+",gender="+this.gender+
+     return "name="+this.name+",gender="+this.gender+
      ",profile pic:"+this.profilePic+",department:"+this.department+",salary="+this.salary+",startDate="+empDate+",note:"+this.note;
  }
 }
